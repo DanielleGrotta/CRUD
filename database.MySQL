@@ -1,0 +1,41 @@
+CREATE TABLE `clients` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `name_client` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+ `cpf` varchar(15) COLLATE utf8mb4_general_ci NOT NULL,
+ `rg` varchar(15) COLLATE utf8mb4_general_ci NOT NULL,
+ `email` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+ `tel1` varchar(15) COLLATE utf8mb4_general_ci NOT NULL,
+ `tel2` varchar(15) COLLATE utf8mb4_general_ci NOT NULL,
+ `birth` varchar(15) COLLATE utf8mb4_general_ci NOT NULL,
+ `active` int(1) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '1' COMMENT '1=Active | 0=Inactive',
+ `id_user` int(10) COLLATE utf8mb4_general_ci NOT NULL,
+ PRIMARY KEY (`id`)
+ FOREING KEY (`id_user`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `clients_address` (
+ `id_address` int(11) NOT NULL AUTO_INCREMENT,
+ `id_client` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+ `state` varchar(15) COLLATE utf8mb4_general_ci NOT NULL,
+ `CEP` varchar(15) COLLATE utf8mb4_general_ci NOT NULL,
+ `city` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+ `district` varchar(15) COLLATE utf8mb4_general_ci NOT NULL,
+ `street` varchar(15) COLLATE utf8mb4_general_ci NOT NULL,
+ `number` varchar(15) COLLATE utf8mb4_general_ci NOT NULL,
+ `main_address` int(1) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '1' COMMENT '1=Active | 0=Inactive',
+ `active_address` int(1) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '1' COMMENT '1=Active | 0=Inactive',
+ `id_user` int(10) COLLATE utf8mb4_general_ci NOT NULL,
+ PRIMARY KEY (`id_address`)
+ FOREING KEY (`id_client`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `users` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `name` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+ `CPF` varchar(15) COLLATE utf8mb4_general_ci NOT NULL,
+ `login` varchar(15) COLLATE utf8mb4_general_ci NOT NULL,
+ `pass_hash` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+ `userType` varchar(15) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '1' COMMENT '1=default | 2=Admin',
+ PRIMARY KEY (`id`)
+ FOREING KEY (`CPF`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8mb4_general_ci;
